@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TagShot Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+    button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    #preview { border: 2px dashed #999; padding: 20px; min-height: 200px; }
+  </style>
+</head>
+<body>
+  <h1>TagShot Test Page</h1>
+  
+  <div class="test-section">
+    <h3>Test Controls</h3>
+    <button onclick="testGenerate()">Test Generate</button>
+    <button onclick="testUpdateState()">Test Update State</button>
+    <button onclick="testTemplate()">Test Template Change</button>
+  </div>
+  
+  <div class="test-section">
+    <h3>Preview Area</h3>
+    <div id="preview">Preview will appear here...</div>
+  </div>
+  
+  <div class="test-section">
+    <h3>Console Output</h3>
+    <div id="console" style="background: #f0f0f0; padding: 10px; font-family: monospace; height: 200px; overflow-y: scroll;"></div>
+  </div>
+
+  <script>
+    // Mock console.log to capture output
+    const originalLog = console.log;
+    const consoleDiv = document.getElementById('console');
+    
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      const message = args.map(arg => 
+        typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+      ).join(' ');
+      consoleDiv.innerHTML += message + '<br>';
+      consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    };
+    
+    // Test functions
+    function testGenerate() {
+      console.log('Testing generate function...');
+      if (window.tagShotApp) {
+        window.tagShotApp.generatePreview();
+      } else {
+        console.log('TagShot app not found');
+      }
+    }
+    
+    function testUpdateState() {
+      console.log('Testing state update...');
+      if (window.tagShotApp) {
+        window.tagShotApp.updateState({ tag: '#TEST', text: 'Test message' });
+      } else {
+        console.log('TagShot app not found');
+      }
+    }
+    
+    function testTemplate() {
+      console.log('Testing template change...');
+      if (window.tagShotApp) {
+        window.tagShotApp.updateState({ template: 'banner' });
+      } else {
+        console.log('TagShot app not found');
+      }
+    }
+    
+    // Check if app loads
+    window.addEventListener('load', () => {
+      console.log('Page loaded, checking for TagShot app...');
+      setTimeout(() => {
+        if (window.tagShotApp) {
+          console.log('✅ TagShot app found and loaded successfully!');
+        } else {
+          console.log('❌ TagShot app not found');
+        }
+      }, 1000);
+    });
+  </script>
+  
+  <!-- Load the TagShot app -->
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>

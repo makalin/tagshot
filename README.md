@@ -1,214 +1,287 @@
-# TagShot
+# TagShot 🎯
 
-A tiny, no-backend meme toolkit that turns your text + tags into polished, shareable **fake screen** images (tweet-style posts, alerts, headlines, chat bubbles). Runs entirely on **GitHub Pages**—no API keys, no servers.
+**Turn your text + tags into polished, shareable fake screen images**
 
----
+A powerful Vite + TypeScript meme toolkit that creates realistic screenshots of social media posts, chat conversations, and more.
 
-## ✨ What it does
+## ✨ Features
 
-* **Type a tag** (e.g., `#BREAKING`, `NEW:`) → get a crisp “screenshot” image.
-* **Preset templates:** X/Tweet-style post, News alert banner, Chat bubble, System popup.
-* **One-click export:** PNG (retina), optional transparent background.
-* **URL-as-config:** Everything is reproducible via query params for instant links.
-* **Works on GitHub Pages:** 100% static, client-side rendering (Canvas).
+- **7 Template Types**: X/Tweet, News Banner, Chat Bubble, System Popup, WhatsApp, Facebook Messenger, ChatGPT
+- **Draggable Preview System**: Move and resize preview windows anywhere on screen
+- **Smart Position Memory**: Preview windows remember their position and size across sessions
+- **Advanced Export Options**: PNG export at actual size, high quality, or with transparency
+- **Content-Only Export**: Export just the template content without UI elements
+- **Theme Support**: Light and dark themes with automatic switching
+- **URL State Management**: All settings automatically saved in URL for easy sharing
+- **Responsive Design**: Works perfectly on desktop and mobile devices
+- **Real-time Preview**: Instant preview generation with live updates
 
-> Inspiration example: an X post like `https://x.com/elonmusk/status/1955343219648237961`.
+## 🚀 Quick Start
 
----
-
-## 🚀 Demo (coming soon!)
-
-```
-https://makalin.github.io/tagshot/
-```
-
-Try query params:
-
-```
-/?t=%23BREAKING&template=xpost&name=Elon%20Musk&handle=elonmusk
-&text=We%20turned%20tags%20into%20screenshots.%20Open%20source!
-&avatar=https%3A%2F%2F…%2Felon.png&likes=124k&replies=9,102&reposts=31k&theme=dark
-```
-
-*(URL-encode values; line breaks shown here for readability.)*
-
----
-
-## 🧩 Templates
-
-* **xpost** – Tweet-style card (name, handle, text, counts, time, avatar, badge).
-* **banner** – Full-width news/alert bar with tag and headline.
-* **chat** – Chat bubble (sender, message, time, avatar).
-* **popup** – System modal (title, body, buttons).
-
-Switch with `template=xpost|banner|chat|popup`.
-
----
-
-## 🔧 Fields (URL Params)
-
-| Param      | Template(s)         | Example                                 |                           |
-| ---------- | ------------------- | --------------------------------------- | ------------------------- |
-| `t` (tag)  | all                 | `#BREAKING`, `PSA:`, `NEW:`             |                           |
-| `template` | all                 | `xpost`, `banner`, `chat`, `popup`      |                           |
-| `text`     | all                 | Main content                            |                           |
-| `theme`    | all                 | `light`, `dark`                         |                           |
-| `bg`       | all                 | CSS color or hex (e.g., `%23121212`)    |                           |
-| `name`     | xpost, chat         | `Elon Musk`                             |                           |
-| `handle`   | xpost               | `elonmusk`                              |                           |
-| `avatar`   | xpost, chat         | Public image URL                        |                           |
-| `likes`    | xpost               | `124k`                                  |                           |
-| `reposts`  | xpost               | `31k`                                   |                           |
-| `replies`  | xpost               | `9,102`                                 |                           |
-| `time`     | xpost, chat, banner | `2:34 PM · Aug 13, 2025`                |                           |
-| `headline` | banner              | `Massive latency drop across the fleet` |                           |
-| `buttons`  | popup               | \`OK                                    | Cancel\` (pipe-separated) |
-| `og`       | xpost               | A public URL to prefill via Open Graph  |                           |
-
-> Note: OG prefill is **best-effort** and depends on CORS/availability. Manual editing is always available.
-
----
-
-## 🛠 Tech
-
-* **Vite + TypeScript** (vanilla)
-* **Canvas export** via `html2canvas` (client-only)
-* **No frameworks required** (small, fast build)
-* Minimal CSS with CSS variables for theming
-
----
-
-## 📦 Quick Start
+### Local Development
 
 ```bash
-# 1) Use this repo as a template on GitHub
-# 2) Clone your new repo
-npm i
+# Clone the repository
+git clone https://github.com/makalin/tagshot.git
+cd tagshot
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# open http://localhost:5173
-```
 
-Build:
-
-```bash
+# Build for production
 npm run build
+
+# Preview production build
+npm run preview
 ```
 
----
+### GitHub Pages Deployment
 
-## 🌐 Deploy to GitHub Pages
+1. **Push to GitHub**: Your project will automatically deploy to GitHub Pages
+2. **Enable Pages**: Go to Settings > Pages in your repository
+3. **Source**: Select "GitHub Actions" as the source
+4. **Access**: Your app will be available at `https://yourusername.github.io/tagshot`
 
-1. **Settings → Pages**
+## 🎨 Templates
 
-   * Source: `GitHub Actions`
-2. Add workflow: `.github/workflows/pages.yml`
+### X/Tweet Post
+Create realistic X (Twitter) posts with:
+- Profile name, handle, avatar
+- Post content and hashtags
+- Engagement metrics (likes, reposts, replies)
+- Timestamps
+
+### WhatsApp Chat
+Authentic WhatsApp conversations with:
+- Contact information and online/offline status
+- Message bubbles with timestamps and read receipts
+- Typing indicators and last seen timestamps
+- WhatsApp Web interface styling with green theme
+- Message status indicators (✓, ✓✓, ✓✓✓)
+
+### Facebook Messenger
+Facebook Messenger chats featuring:
+- Contact details and online/offline status
+- Message bubbles with sender names and timestamps
+- Animated typing indicators with bouncing dots
+- Messenger's signature blue theme (#1877F2)
+- Professional chat interface styling
+
+### ChatGPT Screen
+AI chat interface with:
+- User and AI message distinction with avatars
+- Code block support with syntax highlighting
+- Model selection (GPT-4, GPT-3.5, Claude)
+- Streaming indicators with animated dots
+- Dark theme matching the real ChatGPT interface
+
+### News Banner
+Breaking news style banners with:
+- Headlines and content
+- Timestamps
+- Professional news styling
+
+### Chat Bubble
+Simple chat interface with:
+- User avatars and names
+- Message bubbles
+- Timestamps
+
+### System Popup
+Operating system alerts with:
+- Custom titles and messages
+- Button configurations
+- System-style appearance
+
+## 🛠️ Usage
+
+1. **Select Template**: Choose from 7 available templates
+2. **Fill Details**: Enter text, names, timestamps, etc.
+3. **Generate Preview**: Click "Generate Preview" to see your creation
+4. **Position Preview**: Drag the preview window anywhere on screen
+5. **Export**: Choose your preferred export option:
+   - **Export PNG (Actual Size)**: Current preview size
+   - **Export PNG (High Quality)**: Custom dimensions (1080x1350)
+   - **Export PNG (Transparent)**: High quality with transparency
+
+## 🎯 Draggable Preview System
+
+### **Smart Positioning**
+- **Drag anywhere**: Click and drag the blue header to move the preview
+- **Resize freely**: Drag the bottom-right corner to resize
+- **Position memory**: Preview remembers where you put it
+- **Size persistence**: Window size saved across sessions
+
+### **Preview Controls**
+- **Move**: Drag the blue header bar
+- **Resize**: Drag the bottom-right corner
+- **Close**: Click the × button
+- **Always on top**: High z-index ensures visibility
+
+### **Export Features**
+- **Content-only export**: No UI elements in final images
+- **Clean output**: Just your template content
+- **Professional quality**: Perfect for sharing and design work
+- **Multiple formats**: Actual size, high quality, and transparent options
+- **Smart sizing**: Automatic dimension detection and custom sizing
+
+## 🔧 Configuration
+
+### Custom Dimensions
+Set custom export dimensions in the form:
+- **Width**: 100-4000 pixels
+- **Height**: 100-4000 pixels
+
+### Themes
+- **Light**: Clean, bright appearance
+- **Dark**: Modern, dark mode styling
+
+### URL Parameters
+All settings are automatically saved in the URL for easy sharing:
+- Template selection
+- Text content
+- Theme preferences
+- Custom dimensions
+
+## 🚀 Deployment
+
+### GitHub Pages (Automatic)
+The project includes GitHub Actions for automatic deployment:
 
 ```yaml
+# .github/workflows/pages.yml
 name: Deploy TagShot to Pages
 on:
   push:
     branches: [ main ]
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with: { path: dist }
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/deploy-pages@v4
 ```
 
-Your site will appear at `https://<user>.github.io/<repo>/`.
+### Manual Deployment
+For other hosting platforms:
 
----
+```bash
+# Build the project
+npm run build
 
-## 🖱 UI Flow
-
-1. Type your **tag** (`#BREAKING`)
-2. Choose **template** (X post, banner, chat, popup)
-3. Fill **fields** (name, handle, text, etc.)
-4. **Export PNG** (with/without background)
-5. **Copy link** (URL params included for reproducibility)
-
----
-
-## 🧠 How It Works
-
-* Form state → Renders a hidden DOM “frame” → Captured with `html2canvas` → PNG download.
-* URL params hydrate state on load.
-* Optional **Open Graph** fetch to prefill when `og` param exists (best-effort; falls back to manual inputs).
-
----
-
-## 🔒 Legal & Ethics
-
-* This project is for **parody/meme/educational** use.
-* Don’t impersonate real individuals or brands deceptively.
-* Respect trademarks (X/Twitter, etc.)—this project is **not affiliated** with any platform.
-
----
-
-## 🗂 Folder Structure
-
-```
-/public        # icons, default avatars
-/src
-  /templates   # xpost.ts, banner.ts, chat.ts, popup.ts (render fns)
-  /styles      # base.css, themes.css
-  main.ts      # state, router (URL params), exporter
-  ui.ts        # minimal controls
-index.html
+# Deploy the 'dist' folder
+# The built files are in the dist/ directory
 ```
 
----
+## 🛠️ Tech Stack
 
-## 🧪 Dev Notes
+- **Frontend**: Vite + TypeScript
+- **Styling**: CSS with CSS Variables
+- **Export**: html2canvas for PNG generation
+- **Deployment**: GitHub Actions + GitHub Pages
+- **Browser Support**: Modern browsers with ES6+ support
 
-* All templates sized for **1080×1350** by default (IG-friendly).
-  Use `?w=2048&h=1024` to override export size.
-* Fonts: system stack by default; drop a `.woff2` into `/public/fonts` and set `--font-stack`.
+## 📁 Project Structure
 
----
+```
+tagshot/
+├── src/
+│   ├── templates/          # Template renderers (7 templates)
+│   │   ├── xpost.ts       # X/Tweet post template
+│   │   ├── banner.ts      # News banner template
+│   │   ├── chat.ts        # Chat bubble template
+│   │   ├── popup.ts       # System popup template
+│   │   ├── whatsapp.ts    # WhatsApp chat template
+│   │   ├── messenger.ts   # Facebook Messenger template
+│   │   └── chatgpt.ts     # ChatGPT screen template
+│   ├── styles/            # CSS styles and themes
+│   ├── main.ts            # Main application logic with draggable preview
+│   ├── ui.ts              # UI event handlers and form management
+│   └── exporter.ts        # PNG export functionality
+├── public/                # Static assets and favicon
+├── .github/workflows/     # GitHub Actions for deployment
+├── index.html             # Main HTML file with all template fields
+├── package.json           # Dependencies and scripts
+├── vite.config.ts         # Vite configuration for GitHub Pages
+├── tsconfig.json          # TypeScript configuration
+├── README.md              # Comprehensive project documentation
+└── DEPLOYMENT.md          # Detailed deployment guide
+```
+
+## 🔑 Keyboard Shortcuts
+
+- **Ctrl/Cmd + Enter**: Generate preview
+- **Ctrl/Cmd + S**: Save current state
+
+## 🌟 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Issues**: Report bugs and request features on GitHub
+- **Discussions**: Ask questions and share ideas
+- **Wiki**: Check the project wiki for detailed guides
 
 ## 🐛 Troubleshooting
 
-* **Blank avatars?** Cross-origin images may be blocked. Use images with CORS enabled or upload to your repo `/public`.
-* **OG prefill fails?** Some sites block CORS. Paste content manually.
-* **Jagged text?** Export at 2× and downscale.
+### **Preview Not Showing**
+- Ensure you've clicked "Generate Preview"
+- Check browser console for errors
+- Try refreshing the page
+
+### **Export Issues**
+- Generate a preview first before exporting
+- Check that the preview window is visible
+- Try different export options (Actual Size vs High Quality)
+
+### **Template Fields Not Visible**
+- Select a template from the dropdown
+- Template-specific fields appear automatically
+- Check that the template selection is working
+
+### **Position Memory Issues**
+- Preview position is saved automatically
+- Try refreshing the page to restore position
+- Check browser localStorage support
+
+## 🎯 Roadmap
+
+- [ ] More social media templates (Instagram, LinkedIn, TikTok)
+- [ ] Video export support
+- [ ] Custom template builder
+- [ ] Batch export functionality
+- [ ] Advanced styling options
+- [ ] Template marketplace
+
+## 🆕 Latest Updates
+
+### **v2.0 - Draggable Preview System**
+- ✨ **Draggable preview windows** with position memory
+- 🎯 **Smart resizing** with size persistence
+- 📱 **Content-only exports** for professional results
+- 🔄 **Real-time preview updates** with instant generation
+
+### **v1.5 - New Messaging Templates**
+- 📱 **WhatsApp Chat** with authentic interface
+- 💬 **Facebook Messenger** with blue theme
+- 🤖 **ChatGPT Screen** with dark mode
+- 🎨 **Enhanced styling** for all templates
+
+### **v1.0 - Core Features**
+- 🐦 **X/Tweet Post** template
+- 📰 **News Banner** template
+- 💭 **Chat Bubble** template
+- ⚠️ **System Popup** template
+- 🌓 **Theme system** with light/dark modes
 
 ---
 
-## 📜 License
+**Made with ❤️ by the TagShot community**
 
-MIT
-
----
-
-## 🙌 Contributing
-
-PRs for new templates (e.g., YouTube comment, app store review card, terminal output) are welcome. Keep them dependency-light and themeable.
-
----
-
-## ✅ Roadmap
-
-* SVG export option (for perfect scaling)
-* More templates (story/storyboard, SMS/iMessage, Git log, commit diff)
-* Drop-in **watermark** toggle
-* Local font picker
-
----
-
-**Happy tagging!**
+*Turn your ideas into viral content with TagShot! 🎯✨*

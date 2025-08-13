@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TagShot - Meme Toolkit</title>
+  <meta name="description" content="Turn your text + tags into polished, shareable fake screen images">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>TagShot</h1>
+      <p>Turn tags into fake screenshots</p>
+    </header>
+    
+    <main>
+      <div class="controls">
+        <div class="control-group">
+          <label for="tag">Tag:</label>
+          <input type="text" id="tag" placeholder="#BREAKING, NEW:, PSA:" />
+        </div>
+        
+                            <div class="control-group">
+                      <label for="template">Template:</label>
+                      <select id="template">
+                        <option value="xpost">X/Tweet Post</option>
+                        <option value="banner">News Banner</option>
+                        <option value="chat">Chat Bubble</option>
+                        <option value="popup">System Popup</option>
+                        <option value="whatsapp">WhatsApp Chat</option>
+                        <option value="messenger">Facebook Messenger</option>
+                        <option value="chatgpt">ChatGPT Screen</option>
+                      </select>
+                    </div>
+        
+        <div class="control-group">
+          <label for="text">Text:</label>
+          <textarea id="text" placeholder="Enter your message here..."></textarea>
+        </div>
+        
+        <div class="control-group">
+          <label for="theme">Theme:</label>
+          <select id="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="bg">Background:</label>
+          <input type="color" id="bg" value="#ffffff" />
+        </div>
+        
+        <!-- X Post specific fields -->
+        <div id="xpost-fields" class="template-fields">
+          <div class="control-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Elon Musk" />
+          </div>
+          <div class="control-group">
+            <label for="handle">Handle:</label>
+            <input type="text" id="handle" placeholder="elonmusk" />
+          </div>
+          <div class="control-group">
+            <label for="avatar">Avatar URL:</label>
+            <input type="url" id="avatar" placeholder="https://..." />
+          </div>
+          <div class="control-group">
+            <label for="likes">Likes:</label>
+            <input type="text" id="likes" placeholder="124k" />
+          </div>
+          <div class="control-group">
+            <label for="reposts">Reposts:</label>
+            <input type="text" id="reposts" placeholder="31k" />
+          </div>
+          <div class="control-group">
+            <label for="replies">Replies:</label>
+            <input type="text" id="replies" placeholder="9,102" />
+          </div>
+        </div>
+        
+        <!-- Banner specific fields -->
+        <div id="banner-fields" class="template-fields" style="display: none;">
+          <div class="control-group">
+            <label for="headline">Headline:</label>
+            <input type="text" id="headline" placeholder="Massive latency drop across the fleet" />
+          </div>
+        </div>
+        
+        <!-- Chat specific fields -->
+        <div id="chat-fields" class="template-fields" style="display: none;">
+          <div class="control-group">
+            <label for="chat-name">Sender:</label>
+            <input type="text" id="chat-name" placeholder="John Doe" />
+          </div>
+          <div class="control-group">
+            <label for="chat-avatar">Avatar URL:</label>
+            <input type="url" id="chat-avatar" placeholder="https://..." />
+          </div>
+        </div>
+        
+                            <!-- Popup specific fields -->
+                    <div id="popup-fields" class="template-fields" style="display: none;">
+                      <div class="control-group">
+                        <label for="popup-title">Title:</label>
+                        <input type="text" id="popup-title" placeholder="System Alert" />
+                      </div>
+                      <div class="control-group">
+                        <label for="buttons">Buttons:</label>
+                        <input type="text" id="buttons" placeholder="OK|Cancel" />
+                      </div>
+                    </div>
+
+                    <!-- WhatsApp specific fields -->
+                    <div id="whatsapp-fields" class="template-fields" style="display: none;">
+                      <div class="control-group">
+                        <label for="whatsapp-contact">Contact Name:</label>
+                        <input type="text" id="whatsapp-contact" placeholder="John Doe" />
+                      </div>
+                      <div class="control-group">
+                        <label for="whatsapp-messages">Messages (separate with |):</label>
+                        <textarea id="whatsapp-messages" placeholder="Hey there!|How are you?|I'm doing great, thanks!"></textarea>
+                      </div>
+                      <div class="control-group">
+                        <label for="whatsapp-last-seen">Last Seen:</label>
+                        <input type="text" id="whatsapp-last-seen" placeholder="2 minutes ago" />
+                      </div>
+                      <div class="control-group">
+                        <label for="whatsapp-online">Online Status:</label>
+                        <select id="whatsapp-online">
+                          <option value="true">Online</option>
+                          <option value="false">Offline</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Messenger specific fields -->
+                    <div id="messenger-fields" class="template-fields" style="display: none;">
+                      <div class="control-group">
+                        <label for="messenger-contact">Contact Name:</label>
+                        <input type="text" id="messenger-contact" placeholder="Jane Smith" />
+                      </div>
+                      <div class="control-group">
+                        <label for="messenger-messages">Messages (separate with |):</label>
+                        <textarea id="messenger-messages" placeholder="Hi!|Hello there!|How's it going?"></textarea>
+                      </div>
+                      <div class="control-group">
+                        <label for="messenger-typing">Typing Indicator:</label>
+                        <select id="messenger-typing">
+                          <option value="false">Not Typing</option>
+                          <option value="true">Typing...</option>
+                        </select>
+                      </div>
+                      <div class="control-group">
+                        <label for="messenger-online">Online Status:</label>
+                        <select id="messenger-online">
+                          <option value="true">Online</option>
+                          <option value="false">Offline</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- ChatGPT specific fields -->
+                    <div id="chatgpt-fields" class="template-fields" style="display: none;">
+                      <div class="control-group">
+                        <label for="chatgpt-messages">Messages (separate with |):</label>
+                        <textarea id="chatgpt-messages" placeholder="Hello, how can I help you today?|I can assist with coding, writing, and more!"></textarea>
+                      </div>
+                      <div class="control-group">
+                        <label for="chatgpt-model">Model:</label>
+                        <select id="chatgpt-model">
+                          <option value="GPT-4">GPT-4</option>
+                          <option value="GPT-3.5">GPT-3.5</option>
+                          <option value="Claude">Claude</option>
+                        </select>
+                      </div>
+                      <div class="control-group">
+                        <label for="chatgpt-streaming">Streaming:</label>
+                        <select id="chatgpt-streaming">
+                          <option value="false">Not Streaming</option>
+                          <option value="true">Streaming...</option>
+                        </select>
+                      </div>
+                    </div>
+        
+        <div class="control-group">
+          <label for="time">Time:</label>
+          <input type="text" id="time" placeholder="2:34 PM · Aug 13, 2025" />
+        </div>
+        
+        <div class="control-group">
+          <label for="og">Open Graph URL (optional):</label>
+          <input type="url" id="og" placeholder="https://..." />
+        </div>
+        
+        <div class="control-group">
+          <label for="width">Width:</label>
+          <input type="number" id="width" value="1080" min="100" max="4000" />
+        </div>
+        
+        <div class="control-group">
+          <label for="height">Height:</label>
+          <input type="number" id="height" value="1350" min="100" max="4000" />
+        </div>
+      </div>
+      
+                        <div class="actions">
+                    <button id="generate">Generate Preview</button>
+                    <button id="export-png">Export PNG (High Quality)</button>
+                    <button id="export-actual">Export PNG (Actual Size)</button>
+                    <button id="export-transparent">Export PNG (Transparent)</button>
+                    <button id="copy-link">Copy Link</button>
+                  </div>
+      
+      <div class="preview-container">
+        <div id="preview" class="preview-frame"></div>
+      </div>
+    </main>
+  </div>
+  
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
