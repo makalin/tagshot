@@ -4,6 +4,8 @@
 
 A powerful Vite + TypeScript meme toolkit that creates realistic screenshots of social media posts, chat conversations, and more.
 
+🌐 **Live Demo**: [https://makalin.github.io/tagshot/](https://makalin.github.io/tagshot/)
+
 ## ✨ Features
 
 - **7 Template Types**: X/Tweet, News Banner, Chat Bubble, System Popup, WhatsApp, Facebook Messenger, ChatGPT
@@ -43,7 +45,12 @@ npm run preview
 1. **Push to GitHub**: Your project will automatically deploy to GitHub Pages
 2. **Enable Pages**: Go to Settings > Pages in your repository
 3. **Source**: Select "GitHub Actions" as the source
-4. **Access**: Your app will be available at `https://yourusername.github.io/tagshot`
+4. **Access**: Your app will be available at `https://makalin.github.io/tagshot`
+
+**Manual Deployment**: If you need to deploy manually, run:
+```bash
+npm run deploy
+```
 
 ## 🚀 Deployment
 

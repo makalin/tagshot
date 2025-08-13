@@ -709,7 +709,10 @@ class TagShotApp {
       xpost: document.getElementById('xpost-fields'),
       banner: document.getElementById('banner-fields'),
       chat: document.getElementById('chat-fields'),
-      popup: document.getElementById('popup-fields')
+      popup: document.getElementById('popup-fields'),
+      whatsapp: document.getElementById('whatsapp-fields'),
+      messenger: document.getElementById('messenger-fields'),
+      chatgpt: document.getElementById('chatgpt-fields')
     };
 
     Object.entries(templateFields).forEach(([template, element]) => {
