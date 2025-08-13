@@ -45,6 +45,76 @@ npm run preview
 3. **Source**: Select "GitHub Actions" as the source
 4. **Access**: Your app will be available at `https://yourusername.github.io/tagshot`
 
+## 🚀 Deployment
+
+### Build for Production
+
+```bash
+# Build the project
+npm run build
+
+# The built files will be in the 'dist' directory
+```
+
+### Deployment Options
+
+#### **GitHub Pages (Automatic)**
+The project includes GitHub Actions for automatic deployment:
+
+```yaml
+# .github/workflows/pages.yml
+name: Deploy TagShot to Pages
+on:
+  push:
+    branches: [ main ]
+```
+
+#### **Netlify**
+1. **Drag & Drop**: Simply drag your `dist` folder to [netlify.com](https://netlify.com)
+2. **Git Integration**: Connect your repository for automatic deployments
+3. **Custom Domain**: Add your own domain name
+
+#### **Vercel**
+1. **Import Project**: Import your repository to [vercel.com](https://vercel.com)
+2. **Auto Deploy**: Automatic deployments on every push
+3. **Preview Deployments**: Get preview URLs for pull requests
+
+#### **Firebase Hosting**
+```bash
+# Install Firebase CLI
+npm install -g firebase-tools
+
+# Login and initialize
+firebase login
+firebase init hosting
+
+# Deploy
+firebase deploy
+```
+
+#### **Surge.sh**
+```bash
+# Install Surge
+npm install -g surge
+
+# Deploy from dist folder
+cd dist
+surge
+```
+
+#### **Traditional Web Hosting**
+1. Upload the contents of the `dist` folder to your web server
+2. Ensure your server is configured to serve static files
+3. Set up proper MIME types for `.js` and `.css` files
+
+### Environment Configuration
+
+The project is configured with `base: './'` in `vite.config.ts`, making it suitable for:
+- Subdirectory deployments (like GitHub Pages)
+- Static file hosting
+- CDN distribution
+- Any web server that serves static files
+
 ## 🎨 Templates
 
 ### X/Tweet Post
@@ -145,30 +215,6 @@ All settings are automatically saved in the URL for easy sharing:
 - Text content
 - Theme preferences
 - Custom dimensions
-
-## 🚀 Deployment
-
-### GitHub Pages (Automatic)
-The project includes GitHub Actions for automatic deployment:
-
-```yaml
-# .github/workflows/pages.yml
-name: Deploy TagShot to Pages
-on:
-  push:
-    branches: [ main ]
-```
-
-### Manual Deployment
-For other hosting platforms:
-
-```bash
-# Build the project
-npm run build
-
-# Deploy the 'dist' folder
-# The built files are in the dist/ directory
-```
 
 ## 🛠️ Tech Stack
 
